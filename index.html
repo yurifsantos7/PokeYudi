@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Showdown - Arena Emerald Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="game-window">
+    <!-- TELA 1: SELEÇÃO DE AVATAR -->
+    <div id="trainer-screen" class="screen active-screen">
+        <header class="screen-header">
+            <span class="badge-pro">COMPETITIVE EDITION</span>
+            <h1>ESCOLHA SEU AVATAR</h1>
+            <p>Selecione sua identidade de treinador para entrar na arena</p>
+        </header>
+        <div class="grid" id="trainer-grid"></div>
+    </div>
+
+    <!-- TELA 2: TEAM BUILDER -->
+    <div id="poke-screen" class="screen">
+        <header class="screen-header">
+            <h1 id="builder-title">MONTE SUA EQUIPE (0/6)</h1>
+            <div class="search-bar-wrapper">
+                <input type="text" id="poke-search" placeholder="🔍 Filtrar por nome, tipo ou habilidade..." oninput="filterPokedex()">
+            </div>
+        </header>
+        <div class="grid" id="poke-grid"></div>
+        <footer class="screen-footer">
+            <button id="next-btn" class="btn-primary" disabled onclick="showOpponentScreen()">AVANÇAR PARA DESAFIO ➔</button>
+        </footer>
+    </div>
+
+    <!-- TELA 3: SELEÇÃO DE MESTRE -->
+    <div id="opponent-screen" class="screen">
+        <header class="screen-header">
+            <span class="badge-danger">BOSS BATTLE</span>
+            <h1>ESCOLHA SEU ADVERSÁRIO</h1>
+            <p>Enfrente os maiores campeões e líderes da história</p>
+        </header>
+        <div class="grid masters-grid" id="opponent-grid"></div>
+    </div>
+
+    <!-- TELA 4: ARENA DE BATALHA -->
+    <div id="battle-screen" class="screen">
+        <div class="battle-viewport">
+            <div id="weather-overlay"></div>
+            
+            <!-- Plataforma e UI Inimiga -->
+            <div class="platform platform-enemy"></div>
+            <div id="enemy-ui-anchor"></div>
+            <div class="poke-container enemy-pos">
+                <img id="enemy-poke-img" class="sprite" src="" alt="Inimigo">
+            </div>
+
+            <!-- Plataforma e UI Jogador -->
+            <div class="platform platform-player"></div>
+            <div id="player-ui-anchor"></div>
+            <div class="poke-container player-pos">
+                <img id="player-poke-img" class="sprite" src="" alt="Jogador">
+            </div>
+        </div>
+
+        <!-- Painel de Controle Inferior -->
+        <div class="controls-area">
+            <div class="log-wrapper">
+                <div class="log-header">BATTLE LOG</div>
+                <div id="log">Aguardando início...</div>
+            </div>
+            <div id="action-panel">
+                <div id="move-panel">
+                    <div id="move-controls" class="move-grid"></div>
+                    <button class="btn btn-switch" onclick="toggleSwitchMenu(true)">🔄 TROCAR POKÉMON</button>
+                </div>
+                <div id="switch-panel" style="display:none;">
+                    <div id="switch-controls" class="move-grid"></div>
+                    <button class="btn btn-cancel" onclick="toggleSwitchMenu(false)">✖ CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
